@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block title %} Chattr- All Chats {% endblock title %} {% block content %}
+<div class="container">
+    <a href="/chat"><button class="btn btn btn-primary"><i class="fa fa-refresh" aria-hidden="true"></i>
+    Rerfresh For Any New Chats</button></a><br><br><br> {% for chat in object_list %}
+
+
+    <div class="chat" style="width: 80%; background: rgb(189, 192, 174); box-shadow: 2px 0px 25px 20px #111;">
+        {% if chat.user.is_superuser %}
+
+
+        <small style="font-size: 10px;" class="chat-user-special"> {{ chat.user }}- Admin </small> {% else %}
+
+        <small style="font-size: 10px; color: #111; font-weight: bold;" class="chat-user"> {{ chat.user }} </small> {% endif %}
+        <p>
+            <b class="chat-content" style=" color: rgb(21, 49, 209);">{{ chat|linebreaks }}</b></p>
+        <small class="chat-date " style="font-weight: bold; color: rgb(86, 185, 77); ">{{ chat.posted_at }}</small>
+    </div><br><br> {% empty %}
+    <h1 class="heading ">No Chats Yet Be The First To Message!</h1><br> {% endfor %}
+    <br><a href="{% url 'chat:new' %} "><button class="btn btn-outline-primary ">New Message</button></a>
+</div>
+{% endblock content %}

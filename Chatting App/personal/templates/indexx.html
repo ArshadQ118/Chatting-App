@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% block title %} Chattr- All Chats {% endblock title %} {% block content %}
+<h3>Enter The Secret Room Name the Start Chatting..<br></h3>
+<input style="margin-bottom:20px;" id="room-name-input" type="text" size="60"><br>
+<input id="room-name-submit" class="btn btn-primary" type="button" value="Enter">
+
+<script>
+    document.querySelector('#room-name-input').focus();
+    document.querySelector('#room-name-input').onkeyup = function(e) {
+        if (e.keyCode === 13) { // enter, return
+            document.querySelector('#room-name-submit').click();
+        }
+    };
+
+    document.querySelector('#room-name-submit').onclick = function(e) {
+        var roomName = document.querySelector('#room-name-input').value;
+        window.location.pathname = '/personal/' + roomName + '/';
+    };
+</script>
+</body>
+
+</html>
+{% endblock content %}
